@@ -1,20 +1,19 @@
 mod user;
 mod rfid;
+mod logs;
 
-use csv::{Reader, Writer, WriterBuilder, ReaderBuilder};
 use rfid::RFIDReader;
 use user::{User, UserList, UserStatus};
+use logs::Logger;
 
 use inquire::{Text, Select};
-use std::fs::OpenOptions;
 use std::error::Error;
 
 #[allow(unreachable_code)]
 fn main() -> Result<(), Box<dyn Error>> {
     let mut reader = RFIDReader::new()?;
     let mut list = UserList::new("./res/user.csv")?;
-
-    // list.add(&User::new("1", "Doe", "John", UserStatus::Student))?;
+    let mut logger = Logger::new("./res/logs.csv")?;
 
 
     clear();
@@ -42,6 +41,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
         clear();
         println!("Bonjour {} !", user.surname);
+        logger.add(*user)?;
 
     }
     

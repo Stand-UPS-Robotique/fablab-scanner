@@ -1,5 +1,5 @@
 use std::{collections::HashMap, fs::{File, OpenOptions}, error::Error, fmt::{self, Display}};
-use csv::{Writer, WriterBuilder, Reader, ReaderBuilder};
+use csv::{Writer, WriterBuilder, ReaderBuilder};
 use serde::{Deserialize, Serialize};
 
 
@@ -62,15 +62,6 @@ impl User {
             name: String::from(name),
             surname: String::from(surname),
             status: status
-        }
-    }
-
-    pub fn from(uid: &String, name: &String, surname: &String, status: &UserStatus) -> Self {
-        Self { 
-            uid: uid.clone(), 
-            name: name.clone(), 
-            surname: surname.clone(), 
-            status: status.clone() 
         }
     }
 
